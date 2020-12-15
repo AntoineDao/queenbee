@@ -36,7 +36,7 @@ def urljoin(*args):
     return url
 
 
-def make_request(url: str, auth_header: str = '') -> str:
+def make_request(url: str, auth_header: Dict[str, str] = {}) -> str:
     """Fetch data from a url to a local file or using the http protocol
 
     Args:
@@ -46,11 +46,9 @@ def make_request(url: str, auth_header: str = '') -> str:
     Returns:
         str: [description]
     """
-    auth_header = auth_header or ''
-    headers = {
-        'Authorization': auth_header,
+    auth_header.update({
         'User-Agent': USER_AGENT_STRING
-    }
+    })
 
     req = request.Request(url=url, headers=headers)
     return request.urlopen(req)

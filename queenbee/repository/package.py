@@ -252,7 +252,7 @@ class PackageVersion(MetaData):
         return version
 
     def fetch_package(self, source_url: str = None, verify_digest: bool = True,
-                      auth_header: str = '') -> 'PackageVersion':
+                      auth_header: Dict[str, str] = {}) -> 'PackageVersion':
         if source_url.startswith('file:'):
             source_path = source_url.split('file:///')[1]
             if os.path.isabs(source_path):
